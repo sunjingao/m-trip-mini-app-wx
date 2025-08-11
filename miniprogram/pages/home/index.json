@@ -1,0 +1,10 @@
+{
+  "usingComponents": {
+    "van-button": "@vant/weapp/button/index",
+    "license": "./component/license/index",
+    "native-alert": "./component/native-alert/index",
+    "pick-car-card-content": "./component/pick-car-card-content/index",
+    "order-card-content": "./component/order-card/index",
+    "slide-button": "../../component/slide-button/index"
+  }
+}

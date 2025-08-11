@@ -1,0 +1,9 @@
+<view class="container">
+  <city-point />
+
+  <time />
+
+  <view class="btn-part">
+    <van-button custom-class="select-car" type="info" round bind:click="handleSelectCar">去选车</van-button>
+  </view>
+</view>

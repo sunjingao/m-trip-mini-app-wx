@@ -1,0 +1,47 @@
+
+<van-popup show="{{ true }}" position="bottom" closeable="{{false}}">
+  <view class="page">
+
+    <view class="top-part">
+      <view class="clear" bind:tap="handleClear">清空</view>
+      <view class="title">选择租期</view>
+      <view class="close-part" bind:tap="handleClose">
+        <van-icon name="cross" />
+      </view>
+    </view>
+
+    <view class="day-part">
+
+      <view class="start">
+        <view class="start-day">{{ startDay }}</view>
+        <view class="start-time">{{ startTime }}</view>
+      </view>
+      <view class="long-time">{{ longTime }}</view>
+      <view class="end">
+        <view class="end-time">{{ endTime }}</view>
+        <view class="end-day">{{ endDay }}</view>
+      </view>
+    </view>
+
+    <view class="calendar-part">
+      <van-calendar class="calendar" row-height="{{30}}" show="{{ true }}" first-day-of-week="{{ 1 }}" poppable="{{ false }}" show-confirm="{{ false }}" allow-same-day="{{ false }}" type="range" title="" show-title="{{false}}" show-subtitle="{{false}}" show-mark="{{false}}" max-date="{{ maxDate }}" max-range="{{ timeLimitInfo.maxTenancyTerm }}" default-date="{{ defaultCalendate }}" formatter="{{ formatterCalendate }}" filter="{{ filterMinutes }}" bind:select="handleCalendarSelect" />
+    </view>
+
+    <view class="datetime-part">
+      <view class="start">
+        <view class="title">取车时间</view>
+        <van-datetime-picker type="time" visible-item-count="{{5}}" item-height="{{30}}" value="{{ startSelectValue }}" max-hour="{{ endHour }}"  min-hour="{{ startHourTime }}" min-date="{{ timeLimitInfo.fetchTime }}" formatter="{{ formatterHourMinute }}" show-toolbar="{{ false }}" filter="{{ filterMinutes }}" bind:input="handleInputStart" />
+      </view>
+      <view class="end">
+        <view class="title">还车时间</view>
+        <van-datetime-picker type="time" visible-item-count="{{5}}" item-height="{{30}}" item-height="{{30}}"  value="{{ endSelectValue }}" max-hour="{{ endHour }}" min-hour="{{ startHour }}" formatter="{{ formatterHourMinute }}" show-toolbar="{{ false }}" filter="{{ filterMinutes }}" bind:input="handleInputEnd" />
+      </view>
+    </view>
+
+    <view wx:if="{{ isInOneDay }}" class="isInOneDay">租期需大于24小时</view>
+
+    <view class="btn-part">
+      <van-button disabled="{{ isSubmitDisabled }}" custom-class="confirm-btn" type="info" round bind:click="handleConfirm">确定</van-button>
+    </view>
+  </view>
+</van-popup>

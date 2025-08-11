@@ -1,0 +1,65 @@
+<view class="city-point">
+
+  <view class="city-point-item city">
+    <view class="city-point-title">取车城市</view>
+    <view bind:tap="handleCity" data-type="pickup" class="city-point-content">
+      <view class="word">
+        {{ selectedPointInfo.cityInfo.cityName }}
+      </view>
+      <van-icon class="icon" color="#999999" size="16rpx" name="arrow-down" />
+    </view>
+  </view>
+
+  <view class="city-point-item point">
+    <view class="city-point-title">
+      <view wx:if="{{ selectedPointInfo.isDifferent }}">取车网点</view>
+      <view wx:else>取还车网点</view>
+      <view class="distance" wx:if="{{pickupPointDis}}">{{ pickupPointDis }}</view>
+    </view>
+    <view bind:tap="handlePoint" 
+    data-type="pickup" class="city-point-content">
+      <view class="word">
+        {{
+        selectedPointInfo.pickUpPointInfo.name || '附近暂无网点'
+        }}
+      </view>
+      <van-icon class="icon" name="arrow-down" color="#999999" size="16rpx" />
+    </view>
+  </view>
+
+  <view class="city-point-item is-different">
+    <view class="city-point-title">跨网点还车</view>
+    <view class="city-point-content switch {{ selectedPointInfo.isDifferent ? 'is-open' : '' }}">
+      <!-- 使用 node-class 是因为修改size会有样式问题 -->
+      <van-switch size="18px" checked="{{ selectedPointInfo.isDifferent }}" bind:change="handleDiffer" node-class="city-node-cus" />
+    </view>
+  </view>
+</view>
+
+
+<view wx:if="{{ selectedPointInfo.isDifferent }}" class="city-point">
+
+  <view class="city-point-item city">
+    <view class="city-point-title">还车城市</view>
+    <view class="city-point-content" bind:tap="handleCity" data-type="return">
+      <view class="word">
+        {{ selectedPointInfo.cityInfo.cityName }}
+      </view>
+    </view>
+  </view>
+
+  <view class="city-point-item point">
+    <view class="city-point-title">
+      <view>还车网点</view>
+      <view wx:if="{{ returnPointDis }}" class="distance">{{ returnPointDis }}</view>
+    </view>
+    <view bind:tap="handlePoint" data-type="return" class="city-point-content">
+      <view class="word">
+        {{
+        selectedPointInfo.returnPointInfo.name || '附近暂无网点'
+        }}
+      </view>
+      <van-icon class="icon" name="arrow-down" color="#999999" size="16rpx" />
+    </view>
+  </view>
+</view>

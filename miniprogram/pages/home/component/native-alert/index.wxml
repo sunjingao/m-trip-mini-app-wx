@@ -1,0 +1,18 @@
+<view wx:if="{{ !enableLocate || !enableCity  }}" class="page">
+  <view wx:if="{{ !enableLocate }}" class="enable-locate-part">
+    <view class="icon-part">
+      <van-icon name="fail" class="icon" color="#fff" />
+    </view>
+
+    <text class="left-des">未开启定位权限</text>
+    <text class="center" />
+    <van-button size="mini" plain round bind:click="handleOpenLocate" custom-class="enable-btn">去开启</van-button>
+  </view>
+  <view wx:elif="{{ !enableCity }}" class="not-enable-locate">
+    <view class="icon-part">
+      <van-icon name="fail" class="icon" color="#fff" />
+    </view>
+
+    <text class="fail-des">抱歉，当前城市未开通运营</text>
+  </view>
+</view>

@@ -1,0 +1,36 @@
+<image src="https://mobje-pro-04-cos.mobje.cn/mini/mini/header.png" class="top-bar" />
+
+<view wx:if="{{ isLogin }}" class="login-part">
+  <image src="{{ headPortrait }}" class="person" />
+  <view class="info">
+    <view class="login">
+      <view>{{ name }}</view>
+    </view>
+    <view class="des">{{ review }}</view>
+  </view>
+</view>
+
+<view wx:else class="login-part">
+  <image src="https://mobje-pro-04-cos.mobje.cn/mini/mini/avatar.png" class="person" />
+  <view class="info">
+    <view class="login" bind:tap="handleLogin">
+      <view>未登录</view>
+      <van-icon name="arrow" />
+    </view>
+    <view class="des">登录账号畅享便捷出行</view>
+  </view>
+</view>
+
+<view class="list-part">
+  <view class="list-content">
+    <van-cell wx:for="{{ list }}" wx:key="index" title="{{ item.title }}" is-link bind:tap="handleJump" data-route="{{ item.route }}" data-login="{{ item.login }}">
+      <view slot="icon" class="item-icon">
+        <image class="item-img" src="{{ item.icon }}" />
+      </view>
+    </van-cell>
+  </view>
+
+  <view class="bottom-part">
+    <image class="logo" src="{{ bottomLogo }}" />
+  </view>
+</view>

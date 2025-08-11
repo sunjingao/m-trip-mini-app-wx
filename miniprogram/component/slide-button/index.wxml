@@ -1,0 +1,3 @@
+<view class="container" style="right: {{right}}; bottom: {{bottom}}; top: {{top}}; left: {{left}};" bind:touchstart="handleTouchstart" bind:touchmove="handleMove">
+  <slot></slot>
+</view>

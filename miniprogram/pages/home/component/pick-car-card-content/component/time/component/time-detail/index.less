@@ -1,0 +1,140 @@
+.page {
+  padding-top: 20rpx;
+  padding-right: 20rpx;
+  padding-left: 20rpx;
+  height: 98vh;
+  background-color: #f0f3f6;
+  display: flex;
+  flex-direction: column;
+
+  .top-part {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    border-radius: 16rpx;
+    margin-top: 20rpx;
+
+    .clear {
+      width: 100rpx;
+      font-weight: 500;
+      font-size: 28rpx;
+      color: #666666;
+    }
+
+    .title {
+      width: 100%;
+      display: flex;
+      justify-content: center;
+      font-weight: 500;
+      font-size: 36rpx;
+      color: #333333;
+    }
+
+    .close-part {
+      width: 100rpx;
+      text-align: right;
+    }
+  }
+
+  .day-part {
+    display: flex;
+    justify-content: space-between;
+    padding: 30rpx 20rpx;
+    background-color: #fff;
+    border-radius: 16rpx;
+    margin-top: 20rpx;
+    align-items: center;
+
+    .start {
+      display: flex;
+
+      .start-day {
+        font-weight: 500;
+        font-size: 28rpx;
+        color: #333333;
+      }
+
+      .start-time {
+        margin-left: 10rpx;
+        font-size: 28rpx;
+        color: #999999;
+      }
+    }
+
+    .long-time {
+      font-size: 24rpx;
+      color: #283041;
+    }
+
+    .end {
+      display: flex;
+
+      .end-time {
+        font-size: 28rpx;
+        color: #999999;
+      }
+
+      .end-day {
+        margin-left: 10rpx;
+        font-weight: 500;
+        font-size: 28rpx;
+        color: #333333;
+      }
+    }
+  }
+
+  .calendar-part {
+    flex: 1;
+    overflow: auto;
+    margin-top: 20rpx;
+  }
+
+  .datetime-part {
+    height: 380rpx;
+    display: flex;
+    border-radius: 16rpx;
+    padding-top: 20rpx;
+    background-color: #fff;
+
+    .start {
+      flex: 1;
+
+      .title {
+        display: flex;
+        justify-content: center;
+        font-weight: 500;
+        font-size: 28rpx;
+        color: #333333;
+        margin-bottom: 20rpx;
+      }
+    }
+
+    .end {
+      flex: 1;
+
+      .title {
+        display: flex;
+        justify-content: center;
+        font-weight: 500;
+        font-size: 28rpx;
+        color: #333333;
+        margin-bottom: 20rpx;
+      }
+    }
+  }
+
+  .isInOneDay {
+    padding: 10px 0; 
+    text-align: center; 
+    color: red;
+  }
+
+  .btn-part {
+    background-color: #fff;
+    padding: 20rpx;
+  
+    .confirm-btn {
+      width: 100%;
+    }
+  }
+}

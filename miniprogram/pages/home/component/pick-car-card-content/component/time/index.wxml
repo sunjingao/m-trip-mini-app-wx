@@ -1,0 +1,27 @@
+<view bind:tap="handleShowPop" class="time">
+
+  <view class="item">
+    <view class="title">
+      {{ startDay }}
+    </view>
+    <view class="content">
+      {{ startTime }}
+    </view>
+  </view>
+
+  <van-divider class="line" contentPosition="center">
+    <view class="line-content">{{ longTime }}</view>
+  </van-divider>
+
+  <view class="item">
+    <view class="title">
+      {{ endDay }}
+    </view>
+    <view class="content">
+      {{ endTime }}
+    </view>
+  </view>
+
+</view>
+
+<time-detail wx:if="{{ isPopupShow }}" bind:close="handleClosePop" />

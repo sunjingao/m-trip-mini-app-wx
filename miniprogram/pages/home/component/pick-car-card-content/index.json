@@ -1,0 +1,10 @@
+{
+  "component": true,
+  "usingComponents": {
+    "van-switch": "@vant/weapp/switch/index",
+    "van-icon": "@vant/weapp/icon/index",
+    "city-point": "./component/city-point/index",
+    "time": "./component/time/index",
+    "van-button": "@vant/weapp/button/index"
+  }
+}

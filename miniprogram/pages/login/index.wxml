@@ -1,0 +1,51 @@
+<view class="page">
+  <view class="page-content">
+
+    <view class="welcome">
+      <view class="des">欢迎使用摩捷租车小程序</view>
+    </view>
+
+    <view class="login-content">
+      <view wx:if="{{ isQuickLogin }}">
+        <van-button wx:if="{{ isAgreeLogin }}" custom-class="login-btn" open-type="getPhoneNumber" type="info" round bind:getphonenumber="handlePhoneNumber">手机号快捷登录</van-button>
+        <van-button wx:else custom-class="login-btn" type="info" round bind:tap="handlePreCheck">手机号快捷登录</van-button>
+
+        <view class="go-phone-code" bind:tap="handleShowCodeLogin">短信验证码登录/注册</view>
+      </view>
+      <view wx:else>
+        <van-field value="{{ phone }}" placeholder="请输入手机号" border="{{ false }}" bind:input="handleChangePhone">
+          <view slot="left-icon" class="code-icon-right">
+            <van-icon name="phone-o" />
+          </view>
+        </van-field>
+        <van-field value="{{ phoneCode }}" center clearable placeholder="请输入验证码" border="{{ false }}" use-button-slot bind:input="handleChangePhoneCode">
+          <view slot="left-icon" class="code-icon-right">
+            <van-icon name="shield-o" />
+          </view>
+          <van-button wx:if="{{ !isPhoneCodeGetting }}" bind:click="handleGetCode" slot="button" size="small" type="default">
+            获取验证码
+          </van-button>
+          <view wx:else slot="button">
+            {{ phoneCodeMinutes }}s
+          </view>
+        </van-field>
+
+        <view class="login-part">
+          <van-button custom-class="login-btn" type="info" round bind:click="handleCodeLogin" disabled="{{ isPhoneCodeLoginDisable }}">登录</van-button>
+        </view>
+      </view>
+    </view>
+
+    <view class="agree-part">
+      <van-checkbox value="{{ isAgreeLogin }}" bind:change="handleAgreeMobje"></van-checkbox>
+
+      <view class="des">
+        <text>阅读并同意</text>
+        <view class="agree" bind:tap="handleGoAgree">《摩捷租车小程序用户服务协议》</view>
+        <text>、</text>
+        <view class="agree" bind:tap="handleGoSecret">《摩捷租车小程序隐私政策》</view>
+        <text>并授权摩捷租车小程序获得本手机号码</text>
+      </view>
+    </view>
+  </view>
+</view>

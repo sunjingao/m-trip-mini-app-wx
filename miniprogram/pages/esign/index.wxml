@@ -1,0 +1,30 @@
+<view class="container">
+
+  <view class="title">
+    前往E签宝(上链公证签)继续为您提供签署服务
+  </view>
+
+  <view class="tip">
+    <view class="icon">
+      <view class="outer">
+        <view class="inner"></view>
+      </view>
+    </view>
+    <view class="word">
+      获取您的姓名、注册手机号、身份证号、身份证照片、驾驶证照片
+    </view>
+  </view>
+
+  <view class="second">
+    <view class="icon">
+      <view class="outer">
+        <view class="inner"></view>
+      </view>
+    </view>
+    <view class="tip">
+      获取您的订单信息、含租期、租赁车辆信息、保障项信息、订单金额
+    </view>
+  </view>
+
+  <view class="sign" bind:tap="handleGoEsing">前往签署</view>
+</view>

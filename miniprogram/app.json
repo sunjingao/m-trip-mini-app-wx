@@ -1,0 +1,51 @@
+{
+  "pages": [
+    "pages/home/index",
+    "pages/person-center/index",
+    "pages/web-view-h5/index",
+    "pages/web-view-normal/index",
+    "pages/city-select-page/index",
+    "pages/location/index",
+    "pages/login/index",
+    "pages/pay/index",
+    "pages/esign/index",
+    "pages/web-view-special/activity-student/index",
+    "pages/id-card-face-recognition/index",
+    "pages/pickup-car-face/index"
+  ],
+  "window": {
+    "handleWebviewPreload": "auto",
+    "navigationBarTextStyle": "black",
+    "navigationBarTitleText": "摩捷出行",
+    "navigationBarBackgroundColor": "#ffffff"
+  },
+  "tabBar": {
+    "list": [
+      {
+        "pagePath": "pages/home/index",
+        "text": "用车",
+        "iconPath": "asset/png/unselected-car.png",
+        "selectedIconPath": "asset/png/selected-car.png"
+      },
+      {
+        "pagePath": "pages/person-center/index",
+        "text": "个人中心",
+        "iconPath": "asset/png/unselected-my.png",
+        "selectedIconPath": "asset/png/selected-my.png"
+      }
+    ]
+  },
+  "resolveAlias": {
+    "@/*": "/*"
+  },
+  "permission": {
+    "scope.userLocation": {
+      "desc": "将获取您的具体位置信息，为您推荐附近租车网点"
+    }
+  },
+  "requiredPrivateInfos": [
+    "getLocation"
+  ],
+  "componentFramework": "glass-easel",
+  "lazyCodeLoading": "requiredComponents"
+}

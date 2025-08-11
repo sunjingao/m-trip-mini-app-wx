@@ -1,0 +1,29 @@
+<view class="page">
+  <van-index-anchor use-slot>
+    当前定位
+  </van-index-anchor>
+
+  <van-cell wx:if="{{ currentLocationInfo.isGpsOpen }}">
+    <view slot="title" class="location-title">
+      <van-icon name="location-o" />
+      <view class="city-name">{{currentLocationInfo.cityName}}</view>
+    </view>
+    <view class="re-locate" bind:tap="handleLocate">重新定位</view>
+  </van-cell>
+  <van-cell wx:else bind:tap="handleLocate">
+    <view slot="title" class="location-title">
+      <van-icon name="location-o" />
+      <view class="city-name">未获取到定位</view>
+    </view>
+    <view class="re-locate" bind:tap="handleLocate">重新定位</view>
+  </van-cell>
+
+  <van-index-bar index-list="{{ indexKeys }}">
+    <view wx:for="{{ indexMap }}" wx:for-item="item" wx:for-index="key" wx:key="key">
+      <van-index-anchor index="{{key}}"></van-index-anchor>
+      <view wx:for="{{ item }}" wx:for-item="cityItem" wx:for-index="cityKey" wx:key="cityKey" bind:tap="handleSelectCity" data-cityCode="{{ cityItem.cityCode }}">
+        <van-cell title="{{ cityItem.cityName }}" />
+      </view>
+    </view>
+  </van-index-bar>
+</view>

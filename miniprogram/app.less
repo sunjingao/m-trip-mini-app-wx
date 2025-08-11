@@ -1,0 +1,28 @@
+view,
+text,
+view::before,
+view::after,
+text::before,
+text:after {
+  box-sizing: border-box;
+}
+
+// vant组件库调整，选中的颜色 和 选中的起止之间的部分
+.van-calendar__day--start,
+.van-calendar__day--end {
+  background-color: #1989fa !important;
+}
+
+.van-calendar__day--middle {
+  background-color: #e5f3fe !important;
+  color: #333333 !important;
+}
+
+.gray-bg {
+  background-color: #f1f3f6;
+}
+
+// time-picker滚动时候的动画事件间距
+ .van-picker-column__wrapper {
+   transition-duration: 500ms !important;
+ }
