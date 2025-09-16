@@ -2,7 +2,7 @@ export function getCosImgUrl(key) {
   return `https://mobje-pro-04-cos.mobje.cn/mini/mini/${key}`;
 }
 
-function getTripMiniH5BaseUrl() {
+export function getTripMiniH5BaseUrl() {
   // develop：开发 trial：体验 release：线上
   const accountInfo = wx.getAccountInfoSync();
   const environment = accountInfo.miniProgram.envVersion;

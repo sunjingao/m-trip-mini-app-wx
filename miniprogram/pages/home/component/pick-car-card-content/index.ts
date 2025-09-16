@@ -37,7 +37,7 @@ Component({
     },
 
     async handleSelectCar() {
-      await getIsTimeValid(this.globalDataProxy.timeLimitInfo);
+      // await getIsTimeValid(this.globalDataProxy.timeLimitInfo); // sja
 
       await this.getIsPointValid(this.globalDataProxy.selectedPointInfo);
 

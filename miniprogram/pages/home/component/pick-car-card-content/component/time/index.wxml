@@ -1,4 +1,4 @@
-<view bind:tap="handleShowPop" class="time">
+<view bind:tap="handleShowTimeDetail" class="time">
 
   <view class="item">
     <view class="title">
@@ -24,4 +24,4 @@
 
 </view>
 
-<time-detail wx:if="{{ isPopupShow }}" bind:close="handleClosePop" />
+<!-- <time-detail wx:if="{{ isPopupShow }}" bind:close="handleClosePop" /> -->

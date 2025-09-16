@@ -1,4 +1,5 @@
 <!-- 这里还差骨架屏，以及跳转回来的数据 -->
 <!-- <cover-image></cover-image> -->
 <web-view src="{{ url }}" bindmessage="handleMesage">
+  <cover-image src="./asset/gif/test.gif" />
 </web-view>

@@ -39,13 +39,13 @@ Component({
     endSelectValue: "11:30",
     startHourTime: "00",
     startMinuteTime: "00",
-    startHour: "00",
     startMinute: "00",
     endHour: "00",
     endMinute: "00",
     dateRsult: [], // 储存实际选择日期的范围
     timeRsult: [], // 储存实际选择时间的范围
     isInOneDay: false, // 是否在24小时内
+    isLessOneHourCp: false, // 取车时间距离现在是否小于1小时
     isSubmitDisabled: false,
     formatterCalendate(content) {
       if (content.type === 'start') {
@@ -110,9 +110,14 @@ Component({
   
         const isWithin24Hours = Math.abs(dayjs(startTime).diff(dayjs(endTime))) < 86400000;
   
+        const isOverMaxDays = Math.abs(dayjs(startTime).diff(dayjs(endTime), 'day')) > 30
+
+        const isLessOneHour = Math.abs(dayjs(startTime).diff(dayjs(), 'hour')) < 1
+
         this.setData({
           isInOneDay: isWithin24Hours,
-          isSubmitDisabled: isWithin24Hours
+          isLessOneHour: isLessOneHour,
+          isSubmitDisabled: isWithin24Hours || isLessOneHour || isOverMaxDays
         })
       } else {
         this.setData({
@@ -171,19 +176,38 @@ Component({
       this.onGlobalDataChange(this.globalDataProxy)
     },
     initDataTime() {
-      let curMonth = dayjs(this.data.timeLimitInfo.fetchTime)
+      let maxDate = dayjs(this.data.timeLimitInfo.fetchTime)
       
-      curMonth = curMonth.add(this.data.timeLimitInfo.calendarMonthNum, 'month')
+      maxDate = maxDate.add(this.data.timeLimitInfo.maxTenancyTerm, 'day')
 
       const startSelectValue = `${new Date(this.data.timeLimitInfo.fetchTime).getHours()}:${new Date(this.data.timeLimitInfo.fetchTime).getMinutes()}`
       const endSelectValue = `${new Date(this.data.timeLimitInfo.returnTime).getHours()}:${new Date(this.data.timeLimitInfo.returnTime).getMinutes()}`
 
-      this.setData({
-        maxDate: curMonth.valueOf(),
-        startHourTime: new Date(this.data.timeLimitInfo.fetchTime).getHours(),
-        startMinuteTime: new Date(this.data.timeLimitInfo.fetchTime).getMinutes(),
 
-        startHour: this.data.timeLimitInfo.openTime.split(':')[0],
+
+      let startHourTime = undefined
+      let endHourTime = undefined
+      const curStartTime = new Date(this.data.timeLimitInfo.fetchTime).getHours();
+      const openTime = parseFloat(this.data.timeLimitInfo.openTime.split(':')[0]);
+      const appointmentTime = parseFloat(this.data.timeLimitInfo.appointmentTime);
+      if (curStartTime < openTime - appointmentTime) {
+        startHourTime = openTime;
+      } else {
+        if (curStartTime + appointmentTime >= 23) {
+          startHourTime = 23;
+        } else {
+          startHourTime = curStartTime + appointmentTime;
+        }
+      }
+      endHourTime = parseFloat(this.data.timeLimitInfo.closeTime.split(':')[0]);
+    
+
+
+      this.setData({
+        maxDate: maxDate.valueOf(),
+        startHourTime: startHourTime,
+        startMinuteTime: endHourTime,
+
         startMinute: this.data.timeLimitInfo.openTime.split(':')[1],
         endHour: this.data.timeLimitInfo.closeTime.split(':')[0],
         endMinute: this.data.timeLimitInfo.closeTime.split(':')[1],
@@ -226,6 +250,7 @@ Component({
       this.setSubmitDisabled();
     },
     async handleConfirm() {
+      debugger
       if (this.data.dateRsult[1] === null) {
         wx.showToast({ title: '请选择还车时间', icon: 'none' });
         return
@@ -251,7 +276,7 @@ Component({
       const temp = this.data.timeLimitInfo
       temp.fetchTime = startTime.valueOf()
       temp.returnTime = endTime.valueOf()
-      await getIsTimeValid(temp)
+      // await getIsTimeValid(temp) // sja
 
       this.globalDataProxy.timeLimitInfo.fetchTime = startTime.valueOf()
       this.globalDataProxy.timeLimitInfo.returnTime = endTime.valueOf()

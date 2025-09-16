@@ -1,5 +1,6 @@
 import storeBehavior from "@/behaviors/store/index";
 import { OperationUrl } from "mo-front-end-util";
+import { getTripMiniH5BaseUrl } from '@/util/common-url';
 
 Page({
   behaviors: [storeBehavior],
@@ -15,7 +16,7 @@ Page({
     // baseUrl: "http://localhost:8899/trip-mini-h5/index.html/",
     // baseUrl: "https://trip-sit-tc.mobje.cn/trip-mini-h5/index.html/",
     // path: "/main",
-    url: "",
+    url: getTripMiniH5BaseUrl(),
   },
 
   onGlobalDataChange(globalData) {

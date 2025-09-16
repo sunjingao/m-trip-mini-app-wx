@@ -205,7 +205,14 @@ Page({
     setTimeout(
       () => {
         if (this.data.queryParams.fromPath) {
-          redirectToTripMiniH5Webview(this.data.queryParams.fromPath)
+          // 活动页，直接跳转
+          if (this.data.queryParams.fromPath === "activity-student") {
+            wx.redirectTo({
+              url: "/pages/web-view-special/activity-student/index"
+            })
+          } else {
+            redirectToTripMiniH5Webview(this.data.queryParams.fromPath)
+          }
         } else {
           wx.switchTab({
             url: '/pages/home/index'

@@ -170,6 +170,13 @@ Page({
   handleChooseItem(dataType) {
     const index = dataType.currentTarget.dataset.index;
     if (this.data.type === "pickup") {
+      this.globalDataProxy.timeLimitInfo.openTime = this.data.list[
+        index
+      ].openTime;
+      this.globalDataProxy.timeLimitInfo.closeTime = this.data.list[
+        index
+      ].closeTime;
+
       this.globalDataProxy.selectedPointInfo.pickUpPointInfo.name = this.data.list[
         index
       ].name;
@@ -192,6 +199,13 @@ Page({
         ].distance;
       }
     } else {
+      this.globalDataProxy.timeLimitInfo.openTime = this.data.list[
+        index
+      ].openTime;
+      this.globalDataProxy.timeLimitInfo.closeTime = this.data.list[
+        index
+      ].closeTime;
+      
       this.globalDataProxy.selectedPointInfo.returnPointInfo.name = this.data.list[
         index
       ].name;

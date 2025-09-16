@@ -1,3 +1,4 @@
+import { jumpTripMiniH5Webview } from "@/util/common-url";
 import storeBehavior from "@/behaviors/store/index"
 import timeBehavior from "./behaviors/time"
 
@@ -55,6 +56,9 @@ Component({
       this.setData({
         isPopupShow: false
       })
+    },
+    handleShowTimeDetail() {
+      jumpTripMiniH5Webview("date-time-select")
     }
   }
 })

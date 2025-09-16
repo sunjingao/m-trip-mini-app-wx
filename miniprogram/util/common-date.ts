@@ -25,11 +25,28 @@ function getSpaceDay(timeLimitInfo) {
   return resultDay;
 }
 
+/**
+ * 将时分格式（如 "HH:mm"）转换为小时数
+ * @param {string} timeStr - 时分字符串，如 "1:30"、"02:45"
+ * @returns {number} 总小时数（浮点数）
+ */
+function timeToHours(timeStr) {
+  // 拆分小时和分钟（支持 ":" 分隔的任意格式）
+  const [hoursStr, minutesStr] = timeStr.split(':');
+
+  // 转换为数字（处理空值或无效值）
+  const hours = parseFloat(hoursStr) || 0;
+  const minutes = parseFloat(minutesStr) || 0;
+
+  // 计算总小时数（分钟转小时：分钟 ÷ 60）
+  return hours + minutes / 60;
+}
+
 async function getIsTimeValid(timeLimitInfo) {
   return new Promise((resolve, reject) => {
     // 校验是否超过在允许提前预约的时间内
     if (
-      new Date(timeLimitInfo.returnTime).getHours - new Date().getHours() <
+      dayjs(timeLimitInfo.returnTime).diff(dayjs(new Date()), 'hour')  <
       timeLimitInfo.appointmentTime
     ) {
       wx.showToast({
@@ -50,7 +67,7 @@ async function getIsTimeValid(timeLimitInfo) {
     }
 
     // 校验是否超过早上允许的时间
-    if (new Date(timeLimitInfo.fetchTime).getHours() < timeLimitInfo.openTime) {
+    if (new Date(timeLimitInfo.fetchTime).getHours() < timeToHours(timeLimitInfo.openTime)) {
       wx.showToast({
         title: "取车时间不在网点营业时间内",
         icon: "none",
@@ -58,7 +75,7 @@ async function getIsTimeValid(timeLimitInfo) {
       reject();
     }
     if (
-      new Date(timeLimitInfo.returnTime).getHours() < timeLimitInfo.openTime
+      new Date(timeLimitInfo.returnTime).getHours() < timeToHours(timeLimitInfo.openTime)
     ) {
       wx.showToast({
         title: "取车时间不在网点营业时间内",
@@ -68,19 +85,19 @@ async function getIsTimeValid(timeLimitInfo) {
     }
     // 校验是否超过晚上允许的时间
     if (
-      new Date(timeLimitInfo.fetchTime).getHours() > timeLimitInfo.closeTime
+      new Date(timeLimitInfo.fetchTime).getHours() > timeToHours(timeLimitInfo.closeTime)
     ) {
       wx.showToast({
-        title: "取车时间不在网点营业时间内",
+        title: "还车时间不在网点营业时间内",
         icon: "none",
       });
       reject();
     }
     if (
-      new Date(timeLimitInfo.returnTime).getHours() > timeLimitInfo.closeTime
+      new Date(timeLimitInfo.returnTime).getHours() > timeToHours(timeLimitInfo.closeTime)
     ) {
       wx.showToast({
-        title: "取车时间不在网点营业时间内",
+        title: "还车时间不在网点营业时间内",
         icon: "none",
       });
       reject();

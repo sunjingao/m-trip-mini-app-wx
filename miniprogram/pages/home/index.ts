@@ -1,6 +1,7 @@
 import { getCosImgUrl, jumpNormalWebview, jumpTripMiniH5Webview } from "@/util/common-url";
 import storeBehavior from "@/behaviors/store/index";
 import { getPersonalDetailsApi } from "@/api/common/user/index";
+import { getTimeHorizonApi } from "@/api/pages/main/index";
 
 Page({
   behaviors: [storeBehavior],
@@ -15,10 +16,10 @@ Page({
     mobjeLogo: getCosImgUrl("logo_text.png"),
     // 轮播数据
     swiperList: [
-      {
-        url: 'https://mobje-pro-04-1309183960.cos.ap-beijing.myqcloud.com/banner-student-activity.jpg',
-        cbName: "goStudent"
-      },
+      // {
+      //   url: 'https://mobje-pro-04-1309183960.cos.ap-beijing.myqcloud.com/banner-student-activity.jpg',
+      //   cbName: "goStudent"
+      // },
       {
         url: 'https://mobje-pro-04-1309183960.cos.ap-beijing.myqcloud.com/activity-newcustomer.jpg',
         cbName: "goTrumpActivity"
@@ -84,6 +85,17 @@ Page({
     // console.log('位置信息', val);
   },
 
-  onShow() {
+  // async updateTime() {
+  //   let result = await getTimeHorizonApi(this.globalDataProxy.selectedPointInfo.cityInfo.cityCode);
+  //   this.globalDataProxy.timeLimitInfo.fetchTime = result.fetchTime
+  //   this.globalDataProxy.timeLimitInfo.returnTime = result.returnTime
+  // },
+
+  onLoad() {
+    wx.preloadWebview();
+    // 更新状态管理中的取还车时间
+    // if (this.globalDataProxy) {
+    //   this.updateTime()
+    // }
   },
 });
