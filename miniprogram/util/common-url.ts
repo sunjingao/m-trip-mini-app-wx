@@ -9,6 +9,7 @@ export function getTripMiniH5BaseUrl() {
   if (environment === "develop") {
     // return "http://localhost:8899/trip-mini-h5/index.html";
     return "https://trip-sit-tc.mobje.cn/trip-mini-h5/index.html";
+    // return "https://trip-tc.mobje.cn/trip-mini-h5/index.html";
   } else if (environment === "trial") {
     return "https://trip-sit-tc.mobje.cn/trip-mini-h5/index.html";
   } else {
